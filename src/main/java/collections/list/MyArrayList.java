@@ -48,5 +48,25 @@ public class MyArrayList<E> implements MyList<E> {
     System.arraycopy(elements, index, elements, index + 1, size - index);
     elements[index] = element;
     size++;
+  
+  }
+
+  // ===================================================================================================
+
+  boolean addAll(Collection<? extends E> col) {
+	  if(col.size() > elements.length - size) {
+		  Object [] newElements = new Object[elements.length + col.size()];
+
+		  for(int i = 0; i < elements.length; i++){
+			  newElements[i] = elements[i];
+		  }
+		  elements = newElements;
+	  }
+
+	  for(E element : col) {
+		elements[size] = element;
+		size++;
+	  }
+	  return true;
   }
 }
