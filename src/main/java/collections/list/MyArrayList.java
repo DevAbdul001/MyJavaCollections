@@ -82,7 +82,36 @@ public class MyArrayList<E> implements MyList<E> {
 		if( elements[i] == object){
 			return true;	
 		}
+	
 	}
   }
+
+  // ===================================================================================================
+  boolean containsAll(Collection<?> col){
+	
+	for(E element : col) {
+		boolean matches = false;
+
+		for(int i = 0; i<elements.size; i++){
+			if( elements[i] == element ) {
+				matches = true;
+			} 
+		}
+
+		if( matches == false ) {
+			return false;
+		}
+	}
+
+	return true;
+
+  }
+
+
+
+
+
+
+
 
 }
