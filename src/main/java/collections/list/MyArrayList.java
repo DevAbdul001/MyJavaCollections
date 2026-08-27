@@ -69,4 +69,20 @@ public class MyArrayList<E> implements MyList<E> {
 	  }
 	  return true;
   }
+
+  // ====================================================================================================
+  void clear(){
+	Object[] elements = new Object[0];
+  }
+
+  // ===================================================================================================
+  boolean contains (Object object){
+
+	for(int i = 0; i < elements.length; i++){
+		if( elements[i] == object){
+			return true;	
+		}
+	}
+  }
+
 }
