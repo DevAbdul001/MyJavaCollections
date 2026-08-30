@@ -141,4 +141,18 @@ public class MyArrayList<E> implements MyList<E> {
     }
     return elements[index];
   }
+
+  // ==================================================================================================
+  int hashCode() {
+
+    int hash = 0;
+
+    for (int i = 0; i < elements.size; i++) {
+      int hashCode = Objects.hashCode(elements[i]);
+      int combined = 31 * hash + hashCode;
+      hash = combined;
+    }
+
+    return hash;
+  }
 }
