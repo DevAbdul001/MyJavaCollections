@@ -176,4 +176,32 @@ public class MyArrayList<E> implements MyList<E> {
 
 	  return false;
   }
+
+  // ===================================================================================================
+  Iterator<E> iterator() {
+
+    return new Iterator<E>() {
+
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            E element = elements[cursor];
+            cursor++;
+
+            return element;
+        }
+    };
+}
+
+
 }
