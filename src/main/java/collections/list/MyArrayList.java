@@ -155,4 +155,25 @@ public class MyArrayList<E> implements MyList<E> {
 
     return hash;
   }
+
+  // ==================================================================================================
+  int indexOf(Object object){
+	
+	  for( int i = 0; i < elements.size; i++){
+		if( Objects.equals( elements[i], object) ){
+			return i;
+		}
+	  }
+	  return -1;
+  }
+
+  // ===================================================================================================
+  boolean isEmpty(){
+	
+	  if( elements.size == 0 ){
+		return true;
+	  }
+
+	  return false;
+  }
 }
