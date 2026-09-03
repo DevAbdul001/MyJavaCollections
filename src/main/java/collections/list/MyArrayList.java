@@ -157,24 +157,24 @@ public class MyArrayList<E> implements MyList<E> {
   }
 
   // ==================================================================================================
-  int indexOf(Object object){
-	
-	  for( int i = 0; i < elements.size; i++){
-		if( Objects.equals( elements[i], object) ){
-			return i;
-		}
-	  }
-	  return -1;
+  int indexOf(Object object) {
+
+    for (int i = 0; i < elements.size; i++) {
+      if (Objects.equals(elements[i], object)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   // ===================================================================================================
-  boolean isEmpty(){
-	
-	  if( elements.size == 0 ){
-		return true;
-	  }
+  boolean isEmpty() {
 
-	  return false;
+    if (elements.size == 0) {
+      return true;
+    }
+
+    return false;
   }
 
   // ===================================================================================================
@@ -182,26 +182,87 @@ public class MyArrayList<E> implements MyList<E> {
 
     return new Iterator<E>() {
 
-        int cursor = 0;
+      int cursor = 0;
 
-        @Override
-        public boolean hasNext() {
-            return cursor < size;
+      @Override
+      public boolean hasNext() {
+        return cursor < size;
+      }
+
+      @Override
+      public E next() {
+        if (!hasNext()) {
+          throw new NoSuchElementException();
         }
 
-        @Override
-        public E next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
+        E element = elements[cursor];
+        cursor++;
 
-            E element = elements[cursor];
-            cursor++;
-
-            return element;
-        }
+        return element;
+      }
     };
-}
+  }
 
+  // =================================================================================================
+  int lastIndexOf(Object o) {
 
+    if (size == 0) {
+      return -1;
+    }
+
+    return elements[size];
+  }
+
+  // ===============================================================================================
+  ListIterator<E> listIterator() {
+
+    return new ListIterator<E>() {
+
+      int cursor = 0;
+
+      @Override
+      public boolean hasNext() {
+        return cursor < size;
+      }
+
+      @Override
+      public boolean hasPrevious() {
+        return cursor > 0;
+      }
+
+      @Override
+      public E next() {
+        if (!hasNext()) {
+          throw new NoSuchElementException();
+        }
+        E element = elements[cursor];
+        cursor++;
+
+        return element;
+      }
+
+      @Override
+      public int nextIndex() {
+        return cursor;
+      }
+
+      @Override
+      public E previous() {
+        if (!hasPrevious()) {
+          throw new NoSuchElementException();
+        }
+        cursor--;
+        E element = elements[cursor];
+        return element;
+      }
+
+      @Override
+      public int previousIndex() {
+        int prev = cursor - 1;
+        return prev;
+      }
+
+      // TODO : remove() & Set(E e) methods
+    };
+  }
 }
