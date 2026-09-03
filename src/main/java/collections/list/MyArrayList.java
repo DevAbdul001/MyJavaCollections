@@ -287,4 +287,38 @@ public class MyArrayList<E> implements MyList<E> {
 
     return element;
   }
+
+  // ===================================================================================================
+  boolean remove(Object o) {
+    if (size == 0) {
+      return false;
+    }
+
+    int index = this.indexOf(o);
+
+    if (index == -1) {
+      return false;
+    }
+    this.remove(index);
+    return true;
+  }
+
+  // ===================================================================================================
+  boolean removeAll(Collection<?> col) {
+
+    int count = 0;
+
+    for (Object o : col) {
+      while (this.contains(o)) {
+        this.remove(o);
+        count++;
+      }
+    }
+
+    if (count == 0) {
+      return false;
+    }
+
+    return true;
+  }
 }
