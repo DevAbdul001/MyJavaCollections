@@ -215,10 +215,15 @@ public class MyArrayList<E> implements MyList<E> {
 
   // ===============================================================================================
   ListIterator<E> listIterator() {
+    return listIterator(0);
+  }
+
+  // ===============================================================================================
+  ListIterator<E> listIterator(int index) {
 
     return new ListIterator<E>() {
 
-      int cursor = 0;
+      int cursor = index;
 
       @Override
       public boolean hasNext() {
@@ -264,5 +269,22 @@ public class MyArrayList<E> implements MyList<E> {
 
       // TODO : remove() & Set(E e) methods
     };
+  }
+
+  // ===================================================================================================
+  E remove(int index) {
+
+    if (size == 0 || index >= size || index < 0) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    E element = elements[index];
+
+    int elementsToShift = size - index - 1;
+    System.arraycopy(elements, index + 1, elements, index, elementsToShift);
+    elements[size - 1] = null;
+    size--;
+
+    return element;
   }
 }
