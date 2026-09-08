@@ -66,5 +66,29 @@ public interface MyList<E> {
   boolean removeAll(Collection<?> c);
 
   // Replaces each element of this list with the result of applying the operator to the element
+   default void replaceAll(UnaryOperator<E> operator);
 
+   //Retains only the elements that are contained in the specified element
+   boolean retainAll(Collection<?> c);
+
+   //Replaces the element at the specified position in this list with the specified element
+   E set(int index, E element);
+
+   //Returns the number of elements in this list
+   int size();
+
+   //Sorts the list according to order induced by the specified comparator
+   default void sort(Comparator<? super E> c);
+
+   //creates a spliterator over the elements in this list.
+   default Spliterator<E> spliterator();
+
+   //Returns a view of the portion of this list betweeen the specified fromIndex , inclusive and toIndex , exclusive
+   List<E> subList(int fromIndex, int toindex);
+
+   //Returns an array containing all of the elements in this list in proper sequence (from first to last)
+   Object[] toArray();
+
+   //Returns an array  containing all of the elements in this list in proper sequence(from first to last); the runtime type of the returned array is that of the specified array.
+   <T> T[] toArray(T[] a);
 }
