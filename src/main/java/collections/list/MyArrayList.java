@@ -335,5 +335,21 @@ public class MyArrayList<E> implements MyList<E> {
 	}
    }
 
+   // ==================================================================================================
+   boolean retainAll(Collection<?> col) {
+    int count = 0;
 
+    int i = 0;
+
+    while (i < size) {
+        if (col.contains(elements[i])) {
+            i++;
+        } else {
+            this.remove(i);
+            count++;
+        }
+    }
+
+    return count > 0;
+}
 }
