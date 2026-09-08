@@ -321,4 +321,19 @@ public class MyArrayList<E> implements MyList<E> {
 
     return true;
   }
+
+  // =================================================================================================
+   void replaceAll(UnaryOperator<E> operator) {
+
+	   if(Objects.equals(operator, null)){
+		throw new NullPointerException();
+	   }
+	
+	for(int i = 0; i < size; i++){
+		E e = operator.apply(elements[i]);
+		elements[i] = e;
+	}
+   }
+
+
 }
